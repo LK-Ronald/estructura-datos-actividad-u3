@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.collection.Cola;
+
 public class PruebaCola {
     public static void main(String[] args) {
         try {

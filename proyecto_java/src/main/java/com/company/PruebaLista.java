@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.collection.Lista;
+
 public class PruebaLista {
     public static void main(String[] args) {
         String s1 = "Toyota";

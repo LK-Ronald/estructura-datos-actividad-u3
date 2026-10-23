@@ -1,56 +1,61 @@
-package com.company;
+package com.company.collection;
 
-public class Pila {
+public class Cola {
     private int cuenta;
     private Nodo cabeza;
+    private Nodo cola;
 
-    public Pila() {
+    public Cola() {
         cuenta = 0;
         cabeza = null;
+        cola = null;
     }
 
     public boolean isVacia() {
         return (cuenta == 0);
     }
 
-    public void apilar(Object dato) throws Exception {
+    public void encolar(Object dato) throws Exception {
         if (dato == null) {
             throw new Exception("El dato no puede ser nulo");
         }
         Nodo nuevo = new Nodo(dato);
         if (isVacia()) {
             cabeza = nuevo;
+            cola = nuevo;
         } else {
-            nuevo.setAnterior(cabeza);
-            nuevo.setSiguiente(cabeza);
-            cabeza = nuevo;
+            cola.setSiguiente(nuevo);
+            nuevo.setAnterior(cola);
+            cola = nuevo;
         }
-
         ++cuenta;
     }
 
-    public Object desapilar() throws Exception {
+    public Object desencolar() throws Exception {
         if (isVacia()) {
-            throw new Exception("La pila esta vacia");
+            throw new Exception("La cola esta vacia");
         }
         Object dato = cabeza.getDato();
-        cabeza = cabeza.getAnterior();
+        cabeza = cabeza.getSiguiente();
 
         if (cabeza != null) {
-            cabeza.setSiguiente(null);
+            cola.setAnterior(null);
+        } else {
+            cola = null;
         }
+
         --cuenta;
         return dato;
     }
 
     public Object peek() throws Exception {
         if (isVacia()) {
-            throw new Exception("La pila esta vacia");
+            throw new Exception("La cola esta vacia");
         }
         return cabeza.getDato();
     }
 
-    public int tamano() {
+    public int tamano(){
         return cuenta;
     }
 }
